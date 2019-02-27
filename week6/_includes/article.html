@@ -1,0 +1,52 @@
+---
+site: A Collection of Random Articles
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ site }} - {{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/site.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/layout.css">
+</head>
+<body>
+    <header>
+        <h1>{{ site }} </h1>
+    </header>
+    <main>
+        <article>
+            <h2>{{ title }}</h2>
+            {{ content }}
+        </article>
+    </main>
+    <nav class="navigation">
+        {% unless page.url == '/' %}
+            More articles:
+        {% endunless %}
+        <ul>
+            {% unless page.url == '/' %}
+                <li><a href="/">Home</a></li>
+            {% endunless %}
+
+            {% for article in collections.all %}
+                <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <nav class="links">
+        Other sites containing random text:
+        <ul>
+            <li><a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></li>
+            <li><a href="https://www.reddit.com/">Reddit</a></li>
+            <li><a href="https://news.ycombinator.com/">Hacker News</a></li>
+            <li><a href="https://slashdot.org/">Slashdot</a></li>
+            <li><a href="https://www.wired.com/">Wired</a></li>
+        </ul>
+    </nav>
+    <footer>
+        {{ site }} was created with
+        <a href="https://www11ty.io">Eleventy</a> and
+        <a href="https://metacpan.org/pod/Text::Lorem">Text::Lorem</a>.
+    </footer>
+</body>
+</html>
